@@ -1,12 +1,11 @@
-name: SonarCloud
+name: Build and analyze on SonarCloud
+
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-    branches:
-      - main
 
 jobs:
   build:
@@ -14,9 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Necesario para análisis correcto
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -24,13 +22,19 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd modernos
+          npm install
 
-      - name: Run tests (optional)
-        run: npm test || echo "No tests found"
+      - name: Build project
+        run: |
+          cd modernos
+          npm run build
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: Analyze with SonarCloud
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          cd modernos
+          npx sonar-scanner
