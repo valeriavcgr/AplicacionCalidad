@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Marcas - Acme Co</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com/"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1173d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            display: ["Inter", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .modal {
+      transition: opacity 0.25s ease;
+    }
+    body.modal-active {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+  <div class="flex flex-col min-h-screen">
+    <header class="w-full bg-white dark:bg-background-dark/50 shadow-sm"></header>
+
+    <main class="flex-grow container mx-auto px-6 py-8">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Gestión de Marcas</h2>
+        <div class="flex space-x-4">
+        <a href="/products/dashboard" class="px-4 py-2 text-sm font-bold bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">Volver al Dashboard</a>
+            <a href="/products/celulares" id="addBtn" class="px-4 py-2 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">Gestión Celulares</a>
+        <button id="btnAddBrand" class="flex items-center gap-2 px-4 py-2 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+           Añadir Marca
+        </button>
+      </div>
+      </div>
+
+      <div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-lg overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th class="px-6 py-3">Nombre</th>
+                <th class="px-6 py-3">Descripción</th>
+                <th class="px-6 py-3 text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each category}}
+              <tr class="bg-white border-b dark:bg-background-dark dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{this.name}}</th>
+                <td class="px-6 py-4">{{this.description}}</td>
+                <td class="px-6 py-4 text-right flex items-center justify-end space-x-2">
+                  <button class="btn-edit p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700" data-id="{{this.id}}" data-name="{{this.name}}" data-description="{{this.description}}">
+                    <span class="material-symbols-outlined text-sm text-blue-600 dark:text-blue-400">edit</span>
+                  </button>
+                  <button class="btn-delete p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700" data-id="{{this.id}}" data-name="{{this.name}}">
+                    <span class="material-symbols-outlined text-sm text-red-600 dark:text-red-400">delete</span>
+                  </button>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- 🔹 Modal Crear/Editar Marca -->
+  <div id="brandModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+    <div class="modal-container bg-white dark:bg-background-dark w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+      <div class="modal-content py-4 text-left px-6">
+        <div class="flex justify-between items-center pb-3">
+          <p id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-white">Agregar Marca</p>
+          <button class="modal-close cursor-pointer z-50">
+            <span class="material-symbols-outlined text-gray-500 dark:text-gray-400">close</span>
+          </button>
+        </div>
+
+        <form id="brandForm" class="space-y-4">
+          <input type="hidden" id="brandId" />
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
+            <input type="text" id="brandName" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-background-dark focus:ring-primary focus:border-primary" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descripción</label>
+            <textarea id="brandDescription" rows="3" class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-background-dark focus:ring-primary focus:border-primary"></textarea>
+          </div>
+
+          <div class="flex justify-end pt-4">
+            <button type="button" class="modal-close px-4 py-2 bg-gray-300 dark:bg-gray-600 rounded-lg mr-2">Cancelar</button>
+            <button type="submit" id="saveBrandBtn" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Funciones generales de modal
+    const toggleModal = (modalId, show) => {
+      const modal = document.getElementById(modalId);
+      if (show) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        document.body.classList.add('modal-active');
+      } else {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        document.body.classList.remove('modal-active');
+      }
+    };
+
+    // Abrir modal de agregar
+    document.getElementById('btnAddBrand').addEventListener('click', () => {
+      document.getElementById('modalTitle').textContent = 'Agregar Marca';
+      document.getElementById('brandForm').reset();
+      document.getElementById('brandId').value = '';
+      toggleModal('brandModal', true);
+    });
+
+    // Cerrar modal
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => toggleModal('brandModal', false));
+    });
+
+    // Abrir modal de editar
+    document.querySelectorAll('.btn-edit').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('modalTitle').textContent = 'Editar Marca';
+        document.getElementById('brandId').value = btn.dataset.id;
+        document.getElementById('brandName').value = btn.dataset.name;
+        document.getElementById('brandDescription').value = btn.dataset.description;
+        toggleModal('brandModal', true);
+      });
+    });
+
+    // Guardar (crear o editar)
+    document.getElementById('brandForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('brandId').value;
+      const name = document.getElementById('brandName').value.trim();
+      const description = document.getElementById('brandDescription').value.trim();
+
+      const method = id ? 'PUT' : 'POST';
+      const url = id ? `/category/${id}` : '/category';
+      const body = JSON.stringify({ name, description });
+
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body
+        });
+        if (!res.ok) throw new Error('Error al guardar la marca');
+        toggleModal('brandModal', false);
+        location.reload();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    // Eliminar marca
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        const name = btn.dataset.name;
+        if (!confirm(`¿Estás seguro de eliminar la marca "${name}"?`)) return;
+
+        try {
+          const res = await fetch(`/category/${id}`, { method: 'DELETE' });
+          if (!res.ok) throw new Error('Error al eliminar la marca');
+          location.reload();
+        } catch (err) {
+          alert(err.message);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

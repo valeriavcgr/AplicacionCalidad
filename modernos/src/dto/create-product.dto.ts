@@ -1,3 +1,4 @@
+import { Type } from "class-transformer";
 import {IsInt, IsNotEmpty, MaxLength } from "class-validator";
 
 export class CreateProductDTO{
@@ -15,5 +16,11 @@ export class CreateProductDTO{
     @IsNotEmpty()
     @MaxLength(100)
     description:string
+
+    @IsNotEmpty()
+    @Type(() => Object)
+    category?: {
+    id: number;
+    }
 
 }

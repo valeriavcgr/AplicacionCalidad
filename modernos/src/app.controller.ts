@@ -6,11 +6,11 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  //vistas
+//INDEX
   @Get()
   @Render('index')
   getHome(){
-    return { title: 'Bienvenida', message: 'Hola desde Nest con Handlebars!' };
+    return { title: ' ModerNosLandingPage' };
   }
 //ruta para ver si el backend funciona
   @Get('status')

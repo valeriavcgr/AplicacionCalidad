@@ -1,12 +1,120 @@
-{{! views/index.hbs }}
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>{{title}}</title>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>ModerNos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#1173d4",
+        "background-light": "#f6f7f8",
+        "background-dark": "#101922",
+      },
+      fontFamily: {
+        display: ["Inter"]
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        full: "9999px"
+      },
+    },
+  },
+}
+</script>
 </head>
-<body>
-  <h1>{{message}}</h1>
-  <p>Este es tu primer template con Handlebars en NestJS 🎉</p>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+  <div class="layout-container flex h-full grow flex-col">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-10 py-4">
+      <div class="flex items-center gap-3 text-slate-900 dark:text-white">
+        <span class="material-symbols-outlined text-primary text-3xl">smartphone</span>
+        <h2 class="text-xl font-bold">ModerNos</h2>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="./auth/register" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 dark:bg-primary/30 text-primary text-sm font-bold leading-normal tracking-wide hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
+          <span class="truncate">Registrarse</span>
+        </a>
+        <a href="./auth/login" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:opacity-90 transition-opacity">
+          <span class="truncate">Iniciar Sesión</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <div class="relative flex flex-col items-center justify-center text-center p-4 min-h-[480px] bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0FoWgCDO9hMa2MlNwwGC8TnvIlOnjV3rE6NDPU1DFgMVkpIYlPfqpknkBQMbkrnXzHafhZHetzOswbIzShv1iJ7GKr9AyWnMQ_AzKZ7HEVceZYiLu0GCM11NxZtotV8QzVUjNCgIXlcT_IqNwABeVAHD7mGPc9g2tK2ExXVmsoxxICAin2IgXBg2B3erkTiL16C-gBEyrrrzqeHXekABn8CRi_iYMp1O9YfP_qjDTS2hUTf-L-gRJo64OCgCu-Z80MEdnRBbIDZM");'>
+        <div class="max-w-2xl text-white space-y-4">
+          <h1 class="text-4xl md:text-6xl font-black tracking-tighter">Descubre la última tecnología en tus manos</h1>
+          <p class="text-base md:text-lg font-light">Explora nuestra amplia gama de smartphones con las últimas innovaciones y diseños.</p>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-10 lg:px-20 py-16 lg:py-24 space-y-12">
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Características destacadas</h2>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-400">Nuestros smartphones están equipados con tecnología de punta para ofrecerte la mejor experiencia.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="flex flex-col gap-4">
+            <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDhrVwDZinLdnuZdC8nLHVfw1TDmT-vgIDj7w6JkvLF2QeWkoL0_BSCM6xF06lXDR5MO75cXhr4Bv7lqJAUkp72Ux_ElS8X84ZvL0w3kAnjxETLjJ6nINyzFV6n7YXcO1gWDRqDaqp6htrXQAH2l3tJBrJOikcHuG4pgd5neRe50BXXIZdxgGsxZGS55Mp8yLP9I4CB40NCPWsGGoPB_W4iCjfymEj_3cwODcgpjxsx5-hFIRdmvWfI04RmFaJPFr5fYPxzGjcY_2k");'></div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Pantalla de alta resolución</h3>
+              <p class="text-slate-600 dark:text-slate-400">Disfruta de imágenes nítidas y colores vibrantes en cada detalle.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCdf7xwpYLcnI1PhAvaXTSu4NHqxvHiuM5wdnH5WqmwZUxANkoqYMweLgKqiwBn90TYwaSYAxXUqxCOyhPlfVDB9Q32_s4R7UKVwzITEjL1kx1RA9r41dcxOEi-ZA6nWg_RNI240NQv7ftgRDj37vLXCRJlSKMyXc13zVuEifjnn_8wPZ1KCJWQjXrTqr-wGZptYtx2Y9yev571Orkm2-UjUyeZfEngMiWrT8MzbhEMB_fOigor6k6uD6Kww83cfTO10DyRLRD1og");'></div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Sistema de cámara avanzado</h3>
+              <p class="text-slate-600 dark:text-slate-400">Captura momentos inolvidables con calidad profesional.</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLTM1q1Nscei1_xAP6POQxlSt2vVvXbfazxPGsIXZbrXKxNuzkDzN9EX58Rg_CRt6Q57dokkGEPFWIrGMn9KiTGyLiL355GJhmT06rvydoRpCSdjNcqzSRw_lQlIspizz7tDNef9wrXKTI4PRhVrqt7RnL_NgpaUKnbK2KhCqzjFsBjD3z8sq4MaTzH2jAEXxuSrj3wWJz4LXQUqgipdLgT2vr3U2zZvVvLQQWKKLAzKdT6MhT5rxX4p10ZmKux8hyl5u2G3MZ6OQ");'></div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Batería de larga duración</h3>
+              <p class="text-slate-600 dark:text-slate-400">Mantente conectado todo el día sin preocuparte por la carga.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-background-light dark:bg-background-dark py-16 lg:py-24">
+        <div class="max-w-3xl mx-auto text-center px-4">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">¿Listo para actualizar tu smartphone?</h2>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-400">Explora nuestra colección y encuentra el dispositivo perfecto para ti.</p>
+          <div class="mt-8">
+            <a href="./auth/login" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide hover:opacity-90 transition-opacity mx-auto">
+              <span class="truncate">Inicia sesión</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-100 dark:bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col items-center gap-8">
+          <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-600 dark:text-slate-400">
+            <a class="hover:text-primary transition-colors" href="#">Política de privacidad</a>
+            <a class="hover:text-primary transition-colors" href="#">Términos de servicio</a>
+            <a class="hover:text-primary transition-colors" href="#">Contacto</a>
+          </div>
+          <p class="text-sm text-slate-500 dark:text-slate-400">© 2025 ModerNos. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
 </body>
 </html>

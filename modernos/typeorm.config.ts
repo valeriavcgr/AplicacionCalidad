@@ -5,7 +5,6 @@
  */
 import * as dotenv from 'dotenv'
 import { DataSource } from 'typeorm';
-import { User } from './src/entities/user.entity';
 import { Product } from './src/entities/product.entity';
 import { Category } from './src/entities/category.entity';
 /**
@@ -20,6 +19,6 @@ export default new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities:[User, Product, Category],
+    entities:[ Product, Category],
     migrations: ['./src/migrations/*.ts'],
 });

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateCategoryDTO } from 'src/dto/create-category.dto';
 import { UpdateCategoryDTO } from 'src/dto/update-category.dto';
 import { Category } from 'src/entities/category.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 
 @Injectable()
 export class CategoryService {
@@ -21,11 +21,14 @@ export class CategoryService {
         if (!idCategory) throw new NotFoundException('Categoria no encontrada')
         return idCategory
     }
+
     async findCategoryByName(name:string){
-        const nameCategory = await this.categoryRepo.findOneBy({name})
-        if (!nameCategory) throw new NotFoundException('Categoria no encontrada')
-            return nameCategory
+        return this.categoryRepo.find({where: { 
+            name: Like(`%${name}%`) },
+            relations: ['category'],
+        });
     }
+
 
     createCategory(newCategory:CreateCategoryDTO){
         const categoryCreated = this.categoryRepo.create(newCategory)

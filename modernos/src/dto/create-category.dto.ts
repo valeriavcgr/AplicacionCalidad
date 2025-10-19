@@ -6,6 +6,6 @@ export class CreateCategoryDTO{
         name: string;
     
         @IsNotEmpty()
-        @MinLength(10)
+        @MinLength(3)
         description: string;
 }

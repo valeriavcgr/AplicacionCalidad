@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Category } from "./category.entity";
 
 
@@ -17,12 +17,12 @@ export class Product {
     @Column({ nullable: false })
     stock: number;
 
-    @Column({ nullable: false, default: true })
-    status: boolean;
-
     @Column({ nullable: false})
     description: string;
 
     @ManyToOne(() => Category, category => category.productId, { onDelete: 'SET NULL' })
+    @JoinColumn({ name: 'categoryId' }) 
     category: Category;
+
+    
 }

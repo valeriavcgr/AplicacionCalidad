@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login ModerNos</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1173d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .form-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex flex-col min-h-screen">
+<header class="w-full">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clipPath id="clip0_6_319">
+<rect fill="white" height="48" width="48"></rect>
+</clipPath>
+</defs>
+</svg>
+</div>
+<h1 class="text-xl font-bold text-gray-900 dark:text-white">ModerNos</h1>
+</div>
+</nav>
+</header>
+<main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-md space-y-8 bg-white dark:bg-background-dark/50 p-8 rounded-xl shadow-lg">
+<div>
+<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Iniciar sesión en tu cuenta
+                    </h2>
+</div>
+<form action="#" class="mt-8 space-y-6" method="POST">
+<div class="rounded-md -space-y-px">
+<div>
+<label class="sr-only" for="email-address">Correo electrónico</label>
+<input autocomplete="email" class="form-input relative block w-full px-3 py-3 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-background-light dark:bg-background-dark rounded-t-lg focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm" id="email-address" name="email" placeholder="tu-correo@ejemplo.com" required="" type="email"/>
+</div>
+<div>
+<label class="sr-only" for="password">Contraseña</label>
+<input autocomplete="current-password" class="form-input relative block w-full px-3 py-3 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-background-light dark:bg-background-dark rounded-b-lg focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm" id="password" name="password" placeholder="Contraseña" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+</div>
+</div>
+<div>
+<a href="/products/dashboard" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="submit">
+                            Iniciar sesión
+                        </a>
+</div>
+</form>
+<p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+                    ¿No tienes una cuenta?
+                            <a href="./register" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 dark:bg-primary/30 text-primary text-sm font-bold leading-normal tracking-wide hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
+                           <span class="truncate">Registrarse</span>
+                             </a>
+</p>
+</div>
+</main>
+</div>
+</body>
+</html>
