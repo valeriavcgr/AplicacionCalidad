@@ -12,7 +12,7 @@ constructor(
     @InjectRepository(Product)
     private productRepo:Repository<Product>,
     @InjectRepository(Category)
-    private categoryRepo:Repository<Category>
+    readonly categoryRepo:Repository<Category>
 ){}
 
     private ifDontExists(product: Product | null): Product{ 

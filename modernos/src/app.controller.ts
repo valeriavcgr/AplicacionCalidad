@@ -15,7 +15,7 @@ export class AppController {
 //ruta para ver si el backend funciona
   @Get('status')
   getStatus(){
-    return this,this.appService.getStatus();
+    return this.appService.getStatus();
   }
 
 }
